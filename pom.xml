@@ -11,12 +11,12 @@
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
-            <version>1.8</version>
+            <version>1.11</version>
         </dependency>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-generator-annprocess</artifactId>
-            <version>1.8</version>
+            <version>1.11</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -30,7 +30,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
+                <version>3.3</version>
                 <configuration>
                     <compilerVersion>1.8</compilerVersion>
                     <source>1.6</source>
@@ -40,7 +40,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>2.0</version>
+                <version>2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -48,10 +48,12 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>microbenchmarks</finalName>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.openjdk.jmh.Main</mainClass>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Main-Class>org.openjdk.jmh.Main</Main-Class>
+                                    </manifestEntries>
                                 </transformer>
                             </transformers>
                         </configuration>
